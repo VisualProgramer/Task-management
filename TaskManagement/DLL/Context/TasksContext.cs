@@ -12,12 +12,21 @@ namespace DLL.Context
     {
         public TasksContext(DbContextOptions<TasksContext> options) : base(options) 
         {
-            //Database.EnsureDeletedAsync();
+            Database.EnsureDeleted();
             Database.EnsureCreatedAsync();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().Property(x => x.PhotoPath).IsRequired(false);
+            modelBuilder.Entity<User>().Property(x => x.EMail).IsRequired(false);
+            modelBuilder.Entity<User>().Property(p => p.IsAdmin).HasDefaultValue(false);
+
+            modelBuilder.Entity<User>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.LastName).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.Login).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.Password).IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
         

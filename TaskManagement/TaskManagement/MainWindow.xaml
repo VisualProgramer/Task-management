@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel>
+
+            <TextBlock Text="Id"/>
+            <TextBox Name="txtId"></TextBox>
+
+
+            <TextBlock Text="Name"/>
+            <TextBox Name="txtName"></TextBox>
+
+            <TextBlock Text="LastName"/>
+            <TextBox Name="txtLastName"></TextBox>
+
+            <TextBlock Text="Login"/>
+            <TextBox Name="txtLogin"></TextBox>
+
+            <TextBlock Text="Password"/>
+            <TextBox Name="txtPassword"></TextBox>
+
+            <Button Content="Add" Name="btnAddUser" Click="btnAddUser_Click"></Button>
+            <Button Content="Update" Name="btnUpdate" Click="btnUpdate_Click"></Button>
+            <Button Content="Delete" Name="btnDelete" Click="btnDelete_Click"></Button>
+
+            <TextBox Name="txtError"></TextBox>
+
+        </StackPanel>
 
     </Grid>
 </Window>

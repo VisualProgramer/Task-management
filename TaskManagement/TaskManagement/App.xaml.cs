@@ -1,4 +1,6 @@
-﻿using DLL.Context;
+﻿using BLL.Services;
+using DLL.Context;
+using DLL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,14 +24,19 @@ namespace TaskManagement
         }
         private void ConfigureServices(ServiceCollection services)
         {
-            services.AddDbContext<TasksContext>(option => { option.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TasksManagement;Integrated Security=True;"); });
+            services.AddDbContext<TasksContext>(option =>
+            {
+                option.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TasksManagement;Integrated Security=True;");     
+            });
             services.AddTransient<MainWindow>();
+
+            services.AddTransient<UserRepository>();
+            services.AddTransient<UserService>();
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var mainWindow = provider.GetService<MainWindow>();
             mainWindow.Show();
         }
-
     }
 }
