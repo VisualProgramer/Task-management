@@ -10,6 +10,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TaskManagement.Views;
 
 namespace TaskManagement
 {
@@ -29,14 +30,15 @@ namespace TaskManagement
                 option.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TasksManagement;Integrated Security=True;");     
             });
             services.AddTransient<MainWindow>();
+            services.AddTransient<LoginView>();
 
             services.AddTransient<UserRepository>();
             services.AddTransient<UserService>();
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var mainWindow = provider.GetService<MainWindow>();
-            mainWindow.Show();
+            var loginView = provider.GetService<LoginView>();
+            loginView.Show();
         }
     }
 }

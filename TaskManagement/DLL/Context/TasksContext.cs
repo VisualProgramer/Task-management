@@ -24,7 +24,6 @@ namespace DLL.Context
 
             modelBuilder.Entity<User>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.LastName).IsRequired();
-            modelBuilder.Entity<User>().Property(x => x.Login).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.Password).IsRequired();
 
             base.OnModelCreating(modelBuilder);
