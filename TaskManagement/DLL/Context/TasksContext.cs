@@ -12,7 +12,7 @@ namespace DLL.Context
     {
         public TasksContext(DbContextOptions<TasksContext> options) : base(options) 
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreatedAsync();
         }
 

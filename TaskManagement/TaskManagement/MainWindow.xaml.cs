@@ -20,11 +20,18 @@ namespace TaskManagement
     //var result = _userService.RemoveAsync(int.Parse(txtId.Text)).Result; Why here i must write Result?
     //Method UpdateAsync don't working WITHOUT!!! tasksContext.Entry(entity).State = EntityState.Detached; IN CreatAsync and in UpdateAsync
     //var result = await _userService.FindByConditionAsync(x => x.EMail == txtEmail.Text && x.Password == txtPass.Password) return Collection and i can Get First in the row
+    //RegistrationView == null in LoginView when I click on Button Registration
+
     public partial class MainWindow : Window
     {
         public MainWindow(UserService userService)
         {
             InitializeComponent();
+        }
+
+        private void rbAddTasks_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

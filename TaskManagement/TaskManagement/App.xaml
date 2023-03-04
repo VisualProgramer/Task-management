@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:TaskManagement"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/Style/UIStyles.xaml"/>
     </Application.Resources>
 </Application>

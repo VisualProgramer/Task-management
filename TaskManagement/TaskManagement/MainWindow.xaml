@@ -7,6 +7,99 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <RadioButton Content="My Tasks"
+                             Style="{StaticResource menuButton}">
+                </RadioButton>
+                <RadioButton Content="Add Tasks"
+                             Name="rbAddTasks"
+                             Style="{StaticResource menuButton}"
+                             Checked="rbAddTasks_Checked">
+                </RadioButton>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Border Name="Task"
+                Width="300"
+                Height="100"                
+                BorderThickness="2"
+                BorderBrush="White"
+                Grid.Row="1">
+                <Border.Effect>
+                    <DropShadowEffect Direction="225"
+                                  ShadowDepth="5"
+                                  BlurRadius="20"
+                                  Color="LightGray"
+                                  Opacity="0.4">
+                    </DropShadowEffect>
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Border Name="borderIsExecuted"
+                            Background="LawnGreen">
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Border BorderBrush="Purple"
+                            BorderThickness="1"
+                            Name="borderTask"
+                            Padding="5"
+                            Background="LightCoral">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel>
+                                        <TextBlock Text="an unspecified number or amount of people or things. here are some of our suggestions"
+                                               TextWrapping="Wrap"
+                                               Foreground="White"/>
+                                        <TextBlock Text="11.12.2022"
+                                               FontSize="8"
+                                               HorizontalAlignment="Right"
+                                               Foreground="White"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <DockPanel LastChildFill="False"
+                                           VerticalAlignment="Bottom">
+                                        <TextBlock Text="22.12.2022"
+                                               DockPanel.Dock="Left"
+                                               Margin="5,0"
+                                               Foreground="White"/>
+                                        <TextBlock Name="txtUserName"
+                                               Text="Name"
+                                               DockPanel.Dock="Right"
+                                               Foreground="White"/>
+                                        <TextBlock Name="txtUserLastname"
+                                               Text="Lastname"
+                                               Margin="5,0"
+                                               DockPanel.Dock="Right"
+                                               Foreground="White"/>
+                                    </DockPanel>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

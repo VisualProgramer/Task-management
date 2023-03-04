@@ -31,6 +31,7 @@ namespace TaskManagement
             });
             services.AddTransient<MainWindow>();
             services.AddTransient<LoginView>();
+            services.AddTransient<RegistrationView>();
 
             services.AddTransient<UserRepository>();
             services.AddTransient<UserService>();
