@@ -4,9 +4,147 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskManagement.Views"
+             xmlns:converters="clr-namespace:TaskManagement.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <converters:IsExecutedConverter x:Key="boolVisConverter"></converters:IsExecutedConverter>
+        <converters:PriorityConverter x:Key="numberVisConverter"></converters:PriorityConverter>
+    </UserControl.Resources>
+
     <Grid>
-        
+        <Border Background ="White"
+            BorderThickness="3"
+            BorderBrush="DarkGray">
+            <ScrollViewer>
+                <ListView Name="lvUsers"
+                          ItemsSource="{Binding}"
+                          Height="200">
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="500"/>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderThickness="2"
+                                    BorderBrush="DarkGray"
+                                    Background="Purple">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Path=PhotoPath}" Height="30" Grid.Column="0"
+                                           MouseDown="imgPhoto_MouseDown" Tag="{Binding Path=Id}"/>
+                                        <TextBlock Text="{Binding Path=Name}" Foreground="White" Padding="3" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding Path=LastName}" Foreground="White" Padding="3" Grid.Column="2"/>
+                                        <TextBlock Text="{Binding Path=EMail}" Foreground="White" Padding="3" Grid.Column="3"/>
+                                        <Button Content="AddTask" Name="btnAddTask" Click="btnAddTask_Click" Grid.Column="4"
+                                             Tag="{Binding Path=Id}"/>
+                                        <Button Content="Delete" Name ="btnDaleteUser" Click="btnDaleteUser_Click" Grid.Column="5"
+                                            Tag="{Binding Path=Id}"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Border>
+
+        <Popup Name="popAddTask">
+            <StackPanel Background="White">
+                <TextBlock Text="Description"/>
+                <TextBox Name="txtDescription"/>
+                <TextBlock Text="Priority"/>
+                <TextBox Name="txtPriority"/>
+                <Button Content="Add" Name="btnAdd" Click="btnAdd_Click"/>
+            </StackPanel>
+        </Popup>
+
+        <Popup Name="popShowTasks">
+            <ScrollViewer>
+                <ListView Name="lvTasks"
+                          ItemsSource="{Binding}"
+                          Height="200">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Name="Task"
+                                    Width="200"
+                                    Height="50"      
+                                    BorderThickness="2"
+                                    BorderBrush="White"
+                                    Grid.Row="1"
+                                    Tag="{Binding Path=Id}">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="225"
+                                                      ShadowDepth="5"
+                                                      BlurRadius="20"
+                                                      Color="LightGray"
+                                                      Opacity="0.4">
+                                    </DropShadowEffect>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <Border Name="borderIsExecuted"
+                                                Background="{Binding Path=IsExecuted, Converter={StaticResource boolVisConverter}}"
+                                                MouseDown="borderIsExecuted_MouseDown"
+                                                Tag="{Binding Path=Id}">                                            
+                                        </Border>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Border BorderBrush="Purple"
+                                                BorderThickness="1"
+                                                Name="borderTask"
+                                                Padding="5"
+                                                Background="{Binding Path=Priority, Converter={StaticResource numberVisConverter}}">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Path=Description}"
+                                                                   TextWrapping="Wrap"
+                                                                   Foreground="White"/>
+                                                        <TextBlock Text="{Binding Path=CreationDate}"
+                                                                   FontSize="8"
+                                                                   HorizontalAlignment="Right"
+                                                                   Foreground="White"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <DockPanel LastChildFill="False"
+                                                               VerticalAlignment="Bottom">
+                                                        <TextBlock Text="{Binding Path=ExecutionDate}"
+                                                                   DockPanel.Dock="Left"
+                                                                   Margin="5,0"
+                                                                   Foreground="White"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Popup>
     </Grid>
-</UserControl>
+</UserControl> 

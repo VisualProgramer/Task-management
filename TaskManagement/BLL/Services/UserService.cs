@@ -38,7 +38,5 @@ namespace BLL.Services
         {
             return await _userRepository.GetAllAsync();
         }
-
-
     }
 }

@@ -32,9 +32,16 @@ namespace TaskManagement
             services.AddTransient<MainWindow>();
             services.AddTransient<LoginView>();
             services.AddTransient<RegistrationView>();
+            services.AddTransient<AddTasks>();
+            services.AddTransient<TasksView>();
+
 
             services.AddTransient<UserRepository>();
+            services.AddTransient<TaskRepository>();
+
             services.AddTransient<UserService>();
+            services.AddTransient<TaskService>();
+
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {

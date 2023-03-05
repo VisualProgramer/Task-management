@@ -1,5 +1,6 @@
 ﻿using BLL.Services;
 using Domain.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManagement.Views;
 
 namespace TaskManagement
 {
@@ -24,14 +26,32 @@ namespace TaskManagement
 
     public partial class MainWindow : Window
     {
-        public MainWindow(UserService userService)
+        private readonly LoginView _loginView;
+
+        public MainWindow(LoginView loginView)
         {
             InitializeComponent();
+            _loginView = App.provider.GetService<LoginView>();
         }
 
         private void rbAddTasks_Checked(object sender, RoutedEventArgs e)
         {
+            var _addTasks = App.provider.GetService<AddTasks>();
 
+            ccAddTasks.Content = _addTasks;
         }
+        private void rdMyTasks_Checked(object sender, RoutedEventArgs e)
+        {
+            var _tasksView = App.provider.GetService<TasksView>();
+
+            ccAddTasks.Content = _tasksView;
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            _loginView.Show();
+            this.Close();
+        }
+
     }
 }

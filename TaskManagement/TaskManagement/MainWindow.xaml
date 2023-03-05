@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Icon="D:\IT_Step\GitHub\Task-management\TaskManagement\TaskManagement\Images\icon.png">
+
+    <Border CornerRadius="10"
+            BorderThickness="2"
+            BorderBrush="Gray"
+            Background="White">        
+        
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
@@ -14,92 +26,73 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <RadioButton Content="My Tasks"
-                             Style="{StaticResource menuButton}">
+                             Style="{StaticResource menuButton}"
+                             Margin="10"
+                             Name ="rdMyTasks"
+                             Checked="rdMyTasks_Checked"
+                             IsChecked="False">
                 </RadioButton>
                 <RadioButton Content="Add Tasks"
                              Name="rbAddTasks"
                              Style="{StaticResource menuButton}"
-                             Checked="rbAddTasks_Checked">
+                             Checked="rbAddTasks_Checked"
+                             Margin="10"
+                             IsChecked="False">
                 </RadioButton>
-            </StackPanel>
+                    <Button Name="btnLogout"                          
+                            BorderThickness="0"
+                            Content="LOGOUT"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,50,0,0"
+                            Click="btnLogout_Click">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5"
+                                          Direction="225"
+                                          Color="Purple"
+                                          BlurRadius="10"/>
+                        </Button.Effect>
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Black"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Purple"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                </StackPanel>
         </Grid>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            <Border Name="Task"
-                Width="300"
-                Height="100"                
-                BorderThickness="2"
-                BorderBrush="White"
-                Grid.Row="1">
-                <Border.Effect>
-                    <DropShadowEffect Direction="225"
-                                  ShadowDepth="5"
-                                  BlurRadius="20"
-                                  Color="LightGray"
-                                  Opacity="0.4">
-                    </DropShadowEffect>
-                </Border.Effect>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="15"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
-                        <Border Name="borderIsExecuted"
-                            Background="LawnGreen">
-                        </Border>
-                    </Grid>
-
-                    <Grid Grid.Column="1">
-                        <Border BorderBrush="Purple"
-                            BorderThickness="1"
-                            Name="borderTask"
-                            Padding="5"
-                            Background="LightCoral">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel>
-                                        <TextBlock Text="an unspecified number or amount of people or things. here are some of our suggestions"
-                                               TextWrapping="Wrap"
-                                               Foreground="White"/>
-                                        <TextBlock Text="11.12.2022"
-                                               FontSize="8"
-                                               HorizontalAlignment="Right"
-                                               Foreground="White"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <DockPanel LastChildFill="False"
-                                           VerticalAlignment="Bottom">
-                                        <TextBlock Text="22.12.2022"
-                                               DockPanel.Dock="Left"
-                                               Margin="5,0"
-                                               Foreground="White"/>
-                                        <TextBlock Name="txtUserName"
-                                               Text="Name"
-                                               DockPanel.Dock="Right"
-                                               Foreground="White"/>
-                                        <TextBlock Name="txtUserLastname"
-                                               Text="Lastname"
-                                               Margin="5,0"
-                                               DockPanel.Dock="Right"
-                                               Foreground="White"/>
-                                    </DockPanel>
-                                </Grid>
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </Grid>
-            </Border>
+            <Grid Grid.Row="0">
+                <ContentControl Name="ccAddTasks">                    
+                </ContentControl>
+            </Grid>
+            
         </Grid>
     </Grid>
+    </Border>
+
 </Window>
